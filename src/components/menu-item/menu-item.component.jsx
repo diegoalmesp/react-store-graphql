@@ -1,16 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import './menu-item.styles.scss';
 
-import "./menu-item.styles.scss";
-
-const MenuItem = ({ title, imageUrl, size }) => (
-  <div className={`${size ? size : ""} menu-item`}>
+const MenuItem = ({ title, imageUrl, size, history, }) => (
+  <div className={`${size} menu-item`}>
     <div
       style={{
-        backgroundImage: `url(${imageUrl})`
+        backgroundImage: `url(${imageUrl})`,
       }}
       className="background-image"
-    ></div>
+    />
     <div className="content">
       <h1 className="title">{title.toUpperCase()}</h1>
       <span className="subtitle">SHOP NOW</span>
@@ -19,7 +19,12 @@ const MenuItem = ({ title, imageUrl, size }) => (
 );
 
 MenuItem.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default MenuItem;
+export default withRouter(MenuItem);

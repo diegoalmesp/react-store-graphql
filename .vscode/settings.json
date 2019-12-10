@@ -1,1 +1,9 @@
-{}
+{
+  "editor.snippetSuggestions": "top",
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "prettier.tabWidth": 2,
+  "eslint.autoFixOnSave": true,
+  "prettier.trailingComma": "none",
+  "prettier.printWidth": 100
+}
