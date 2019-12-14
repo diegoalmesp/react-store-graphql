@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import './sign-in.styles.scss';
+import FormInput from '../form-input/form-input.component';
+import CustomButton from '../custom-button/custom-button.component';
 
 const INITIAL_STATE = {
   email: '',
@@ -14,8 +16,13 @@ function SignIn() {
     e.preventDefault();
   }
 
-  function handleFieldChange({ target: { name, value } }) {
-    setFields({ [name]: value });
+  function handleFieldChange(e) {
+    console.log(e.isTrusted);
+    if (!e.isTrusted) return;
+
+    const { name, value } = e.target;
+
+    setFields({ ...fields, [name]: value });
   }
 
   return (
@@ -24,24 +31,26 @@ function SignIn() {
       <span>Sign in with your email and password.</span>
 
       <form onSubmit={handleSubmit}>
-        <input
+        <FormInput
           name="email"
           type="email"
           value={fields.email}
+          handleChange={handleFieldChange}
+          label="Email"
           required
-          onChange={handleFieldChange}
         />
-        <label>Email</label>
-        <input
+        <FormInput
           name="password"
           type="password"
           value={fields.password}
+          handleChange={handleFieldChange}
+          label="Password"
           required
-          onChange={handleFieldChange}
         />
-        <label>Password</label>
 
-        <input type="submit" value="Submit Form" />
+        <CustomButton type="submit" value="Submit Form">
+          Sign In
+        </CustomButton>
       </form>
     </div>
   );
