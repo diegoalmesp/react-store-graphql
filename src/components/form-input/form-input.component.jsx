@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import './form-input.styles.scss';
 
 const FormInput = ({ handleChange, label, ...otherProps }) => {
-  console.log(otherProps);
-
   return (
     <div className="group">
       <input type="text" className="form-input" onChange={handleChange} {...otherProps} />

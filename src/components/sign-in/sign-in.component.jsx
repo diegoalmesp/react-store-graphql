@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 
-import './sign-in.styles.scss';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
+
+import { signInWithGoogle } from '../../firebase/firebase.utils';
+
+import './sign-in.styles.scss';
 
 const INITIAL_STATE = {
   email: '',
@@ -17,9 +20,6 @@ function SignIn() {
   }
 
   function handleFieldChange(e) {
-    console.log(e.isTrusted);
-    if (!e.isTrusted) return;
-
     const { name, value } = e.target;
 
     setFields({ ...fields, [name]: value });
@@ -48,9 +48,8 @@ function SignIn() {
           required
         />
 
-        <CustomButton type="submit" value="Submit Form">
-          Sign In
-        </CustomButton>
+        <CustomButton type="submit">Sign In</CustomButton>
+        <CustomButton onClick={signInWithGoogle}>Sign In With Google</CustomButton>
       </form>
     </div>
   );
